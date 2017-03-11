@@ -1,0 +1,104 @@
+*
+  outline none
+
+body
+  background-color rgba(0, 74, 152, 0.04)
+
+.Select-control
+  cursor pointer !important
+
+input, textarea
+  transition none !important
+
+  &.error, &.error:focus
+    border-color: #ec6464 !important
+    box-shadow: 0 0 0 3px rgba(255, 126, 126, 0.2) !important
+
+  &:focus
+    border-color #007eff !important
+    box-shadow inset 0 1px 1px rgba(0,0,0,0.075), 0 0 0 3px rgba(0,126,255,0.1) !important
+
+.form-group
+  label
+    cursor pointer
+    margin-right 35px
+
+  small.required
+    color #de5c5c
+    margin-left 5px
+
+  .iradio_square-blue
+    margin-right 8px
+
+.btn
+  border-width 1px
+
+.modal-content
+  border 0
+  box-shadow none
+
+.right-bar
+  ul
+    margin 0
+    padding 0
+
+    li
+      display inline-block
+      margin-right 20px
+
+  text.ct-label
+    fill #fff
+
+.content
+
+  .users-table
+
+    &__btns
+      i
+        font-size 18px
+        margin 0 5px
+        cursor pointer
+
+        &:last-child
+          margin-right 0
+
+        &.fa-pencil
+          color #667bec
+
+        &.fa-times
+          color #ec6666
+
+    &__footer
+      display inline-block
+      float right
+
+      button
+        margin-left 15px
+
+    .content
+      padding 15px 0 0
+
+      .table-bordered
+        border 0
+
+    .card
+      .title, .category
+        display inline-block
+
+      .title
+        line-height 35px
+
+      table
+        tbody
+          tr
+            text-align center
+
+            th
+              text-align center
+
+              &:last-child, &:last-child
+                border-right 0
+
+            td, th
+              border-bottom 0
+              border-left 0

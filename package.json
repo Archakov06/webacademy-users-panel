@@ -1,0 +1,54 @@
+{
+  "name": "webacademy-users-panel",
+  "version": "1.0.0",
+  "description": "Панель управления со списком учащихся на React (Redux) + PHP (Silex)",
+  "scripts": {
+    "start": "node server.js",
+    "lint": "eslint src",
+    "build": "eslint src && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Archakov06/webacademy-users-panel.git"
+  },
+  "author": "Archakov Dennis <hello@archakov.im> (https://github.com/Archakov06)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Archakov06/webacademy-users-panel/issues"
+  },
+  "homepage": "https://github.com/Archakov06/webacademy-users-panel",
+  "devDependencies": {
+    "babel-core": "^6.0.20",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^6.0.1",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-react": "^6.0.15",
+    "babel-preset-stage-0": "^6.0.15",
+    "css-loader": "^0.26.2",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.6.2",
+    "express": "^4.13.4",
+    "react-hot-loader": "^1.3.0",
+    "style-loader": "^0.13.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.5.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^1.12.2",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
+  },
+  "dependencies": {
+    "chartist": "^0.10.1",
+    "react": "^0.14.6",
+    "react-bootstrap": "^0.30.7",
+    "react-bootstrap-table": "^3.1.0",
+    "react-chartist": "^0.12.0",
+    "react-dom": "^0.14.6",
+    "react-icheck": "^0.3.6",
+    "react-masked-field": "^1.0.0",
+    "react-redux": "^5.0.3",
+    "react-select": "^1.0.0-rc.3",
+    "redux": "^3.6.0",
+    "whatwg-fetch": "^2.0.3"
+  }
+}

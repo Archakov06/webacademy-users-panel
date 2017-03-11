@@ -1,0 +1,32 @@
+[{
+  "id": 0,
+  "firstname": "Вася",
+  "lastname": "Пупкин",
+  "phone": "+7 (999) 999-99-99",
+  "email": "test@test.ru",
+  "paid": 0
+},
+{
+  "id": 1,
+  "firstname": "Rosetta",
+  "lastname": "Henry",
+  "phone": "+7 (928) 123-33-41",
+  "email": "",
+  "paid": 0
+},
+{
+  "id": 2,
+  "firstname": "Adelaide",
+  "lastname": "Diaz",
+  "phone": "+7 (938) 144-56-34",
+  "email": "adelaide@gmail.com",
+  "paid": 0
+},
+{
+  "id": 3,
+  "firstname": "Cory",
+  "lastname": "Gomez",
+  "phone": "+7 (964) 057-44-12",
+  "email": "cory_gomez@gmail.com",
+  "paid": 0
+}]
