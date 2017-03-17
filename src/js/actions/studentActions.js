@@ -1,6 +1,27 @@
+export const setMonth = (items) => {
+  return {
+    type: 'SET_MONTH',
+    payload: items
+  }
+}
+
+export const setFilter = (data) => {
+  return {
+    type: 'SET_FILTER',
+    payload: data
+  }
+}
+
+export const setChart = (data) => {
+  return {
+    type: 'SET_CHART_DATA',
+    payload: data
+  }
+}
+
 export const setSource = (items) => {
   return {
-    type: 'ADD_SOURCE',
+    type: 'SET_SOURCE',
     payload: items
   }
 }
@@ -28,7 +49,8 @@ export const addUser = (data) => {
 export const setUsers = (data) => {
 
   data.forEach(function(item){
-    item.sources = JSON.parse(item.sources)
+    item.sources = JSON.parse(item.sources);
+    item.month = item.month ? JSON.parse(item.month) : [];
   });
 
   return {

@@ -15,7 +15,7 @@ export class App extends Component {
     return (
       <div>
         <Header />
-        <Content currentStore={currentStore} appActions={appActions} />
+        <Content/>
       </div>
     )
   }

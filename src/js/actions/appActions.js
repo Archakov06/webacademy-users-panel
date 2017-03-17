@@ -17,3 +17,10 @@ export const hideAddDialogAction = (type = 'add') => {
     }
   }
 }
+
+export const tableIsLoading = (b) => {
+  return {
+    type: 'TABLE_IS_LOADING',
+    payload: b
+  }
+}

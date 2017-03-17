@@ -2,6 +2,33 @@ import React, { Component } from 'react'
 
 export default class Header extends Component {
 
+  constructor(props){
+    super(props);
+    this.exportTable = this.exportTable.bind(this);
+    this.printTable = this.printTable.bind(this);
+  }
+
+  printTable(e){
+    var divToPrint = document.getElementById('users-table');
+    newWin = window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+  }
+
+  exportTable(e){
+    e.preventDefault();
+
+    var data_type = 'data:application/vnd.ms-excel';
+    var userTable = document.getElementById('users-table');
+    var userTableHtml = userTable.outerHTML.replace(/ /g, '%20');
+
+    var a = document.createElement('a');
+    a.href = data_type + ', ' + userTableHtml;
+    a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
+    a.click();
+  }
+
   render() {
     return (
       <nav className="navbar navbar-default navbar-fixed">
@@ -19,8 +46,20 @@ export default class Header extends Component {
                 <ul className="nav navbar-nav navbar-left">
                   <li className="dropdown">
                         <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                              Dropdown
-                              <b className="caret"></b>
+                          Файл
+                          <b className="caret"></b>
+                        </a>
+                        <ul className="dropdown-menu">
+                          <li><a href="#">Добавить из XLS</a></li>
+                          <li><a onClick={this.exportTable} href="#">Сохранить в XLS</a></li>
+                          <li className="divider"></li>
+                          <li><a onClick={this.printTable} href="#">Печать</a></li>
+                        </ul>
+                  </li>
+                  <li className="dropdown">
+                        <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                          Настройки
+                          <b className="caret"></b>
                         </a>
                         <ul className="dropdown-menu">
                           <li><a href="#">Action</a></li>

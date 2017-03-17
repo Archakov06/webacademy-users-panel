@@ -12,7 +12,7 @@ export const fetchz = (method, PATH, callback) => {
     return response.json()
   })
   .then((json) => {
-    callback(json);
+    if (callback) callback(json);
   });
 }
 
@@ -20,13 +20,13 @@ export const fetchPOST = (PATH, data, callback) => {
 
   fetch(`${API.PROTOCOL}://${API.DOMAIN+PATH}`, {
     method: 'POST',
-    headers: {'content-Type':'application/json', 'accept':'application/json'},
+    headers: {'accept':'application/json'},
     body: JSON.stringify(data)
   })
   .then((response) => {
     return response.json();
   })
   .then((json) => {
-    callback(json);
+    if (callback) callback(json);
   });
 }

@@ -1,6 +1,8 @@
 const initialState = {
   showAddDialog: false,
   dialogType: '',
+  tableIsLoading: true,
+  devMode: false,
 }
 
 export default function currentStore(state = initialState, action) {
@@ -11,6 +13,11 @@ export default function currentStore(state = initialState, action) {
         ...state,
         showAddDialog: action.payload.show,
         dialogType: action.payload.type
+      }
+    case 'TABLE_IS_LOADING':
+      return {
+        ...state,
+        tableIsLoading: action.payload,
       }
     default:
       return state;
