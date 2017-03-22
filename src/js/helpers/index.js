@@ -1,5 +1,5 @@
 const API = {
-  DOMAIN: 'u2743.indigo.elastictech.org',
+  DOMAIN: 'api.dev',
   PROTOCOL: 'http'
 };
 
