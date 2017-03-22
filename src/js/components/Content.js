@@ -20,20 +20,35 @@ import { fetchz, fetchPOST } from '../helpers'
 
 export class Content extends Component {
 
+  constructor(props){
+    super(props);
+    this.closeModal = this.closeModal.bind(this);
+    this.addTask = this.addTask.bind(this);
+    this.setPieChart = this.setPieChart.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.state = {
+      users: []
+    };
+    const { setUsers, setFilter, setTasks, tableIsLoading } = this.props.appActions;
+  }
+
   componentDidMount(){
-    const { setUsers, setTasks, tableIsLoading } = this.props.appActions;
+    const { setUsers, setFilter, setTasks, tableIsLoading } = this.props.appActions;
     const { studentStore } = this.props;
     const _this = this;
 
     fetchz('GET', '/users/get', function(json){
       setUsers(json);
 
-
+      _this.setState({
+        users: json
+      });
 
       setTimeout( () => {
         fetchz('GET', '/tasks/get', function(json){
           setTasks(json);
           tableIsLoading(false);
+          _this.setPieChart();
         });
       }, 0);
 
@@ -41,31 +56,23 @@ export class Content extends Component {
 
   }
 
-  constructor(props){
-    super(props);
-    this.closeModal = this.closeModal.bind(this);
-    this.addTask = this.addTask.bind(this);
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-  }
-
-  filteredUsers(){
+  setPieChart(){
     const { studentStore } = this.props;
     const { setChart } = this.props.appActions;
-    const users = studentStore.users.filter( (user) => parseInt(studentStore.filterByMonth) == user.month.value);
+    const data = studentStore.users.filter( (user) => parseInt(studentStore.filterByMonth) == user.month.value);
+    const all = data.length * 6000;
+    var have = 0;
+    data.forEach( (item) => {
+      have += parseInt(item.paid);
+    });
+    const need = all - have;
+    setChart([all, have, need]);
+  }
 
-    const makePieData = (json) => {
-      const data = json.filter( (user) => parseInt(studentStore.filterByMonth) == user.month.value);
-      const all = data.length * 6000;
-      var have = 0;
-      data.forEach( (item) => {
-        have += parseInt(item.paid);
-      });
-      const need = all - have;
-      return [all, have, need];
-    }
-
-    setChart(makePieData(users));
-
+  filteredUsers(arr = []){
+    const { studentStore } = this.props;
+    var users = arr.length ? arr : studentStore.users;
+    users = users.filter( (user) => parseInt(studentStore.filterByMonth) == user.month.value);
     return users;
   }
 
@@ -135,7 +142,12 @@ export class Content extends Component {
   handleFilterChange(){
     const { setFilter, setUsers } = this.props.appActions;
     setFilter(this.filterMonth.value);
-    setUsers(this.filteredUsers());
+    setTimeout(()=>{
+      this.setState({
+        users: this.filteredUsers()
+      });
+      this.setPieChart();
+    });
   }
 
   render() {
@@ -145,11 +157,11 @@ export class Content extends Component {
     const header =
       <div className="users-table__footer">
         <label id="btn-sort">
-          <select ref={ (node) => { this.filterMonth = node; }} onChange={this.handleFilterChange}>
+          <select value={studentStore.filterByMonth} ref={ (node) => { this.filterMonth = node; }} onChange={this.handleFilterChange}>
             {
               studentStore.months.map(function(item, index){
                 return (
-                  <option selected={ studentStore.filterByMonth == parseInt(item.value) ? true : false } key={index} value={item.value}>{item.label}</option>
+                  <option key={index} value={item.value}>{item.label}</option>
                 )
               })
             }
@@ -190,7 +202,7 @@ export class Content extends Component {
                             <th></th>
                           </tr>
                           {
-                            studentStore.users.map(function(item, index) {
+                            this.state.users.map(function(item, index) {
                               if (parseInt(studentStore.filterByMonth) == item.month.value)
                                 return (
                                   <tr key={index}>

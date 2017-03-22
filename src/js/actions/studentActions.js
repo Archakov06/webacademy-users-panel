@@ -49,8 +49,8 @@ export const addUser = (data) => {
 export const setUsers = (data) => {
 
   data.forEach(function(item){
-    item.sources = JSON.parse(item.sources);
-    item.month = item.month ? JSON.parse(item.month) : [];
+    item.sources = item.sources.length ? JSON.parse(item.sources) : [];
+    item.month = item.month.length ? JSON.parse(item.month) : [];
   });
 
   return {
